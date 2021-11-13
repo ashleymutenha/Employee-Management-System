@@ -1,0 +1,14 @@
+.container{
+	bottom: 40rem;
+	width: 40rem;
+}
+
+.success{
+	background-color:white ;
+	color: blue;
+}
+
+.warning{
+	background-color:white ;
+	color: red;
+}

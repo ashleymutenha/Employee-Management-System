@@ -1,0 +1,112 @@
+
+<style>
+	
+	.lin{
+		text-decoration:none ;
+
+	}
+	.content-wrapper{
+		position:relative; overflow:visible ; display:block;height:800px;
+	}
+	.alert-warning{
+		color: red;
+	}
+
+	.header{
+	}
+</style>
+
+<head>
+	<title> Ashley Mutenha</title>
+</head>
+<div class ="content-wrapper">
+<div class = "container-fluid" style="position: absolute;">
+
+<div class = "row">
+	<div class ="card-header header text-white bg-success" align="center"><strong>NHETZ INVESTMENTS</strong></div>
+</div>
+
+<div class ="row mt-2">
+	<div class="col-5">
+			<button style= "width:80px" class ="btn btn-success text-white"  (click) ="toggle()">Menu</button>
+			<div class ="card" *ngIf ="show" style ="width:18rem;height:50rem;">
+				<div class ="card-header bg-success text-white" style ="text-align:center;">Menu</div>
+				<ul class ="list-group list-group-flush lead">
+					<strong>
+					<li class = "list-group-item"><button class ="bg-white"(click)="home()" style ="border:none;"><pre>Home                <fa-icon class="text-success" [icon]="faHome"></fa-icon></pre></button></li>
+					<li class = "list-group-item"><button class ="bg-white" style ="border:none;"><pre>Notifications       <fa-icon class="text-success" [icon]="faBell"></fa-icon></pre></button></li>
+					<li class = "list-group-item"><button class ="bg-white" (click)="admin()" style ="border:none;"><pre>Admin               <fa-icon class="text-success" [icon]="faPersonBooth"></fa-icon></pre></button></li>
+					<li class = "list-group-item"><button class ="bg-white" style ="border:none"><pre>About System        <fa-icon class="text-success" [icon]="faBookmark"></fa-icon></pre></button></li>
+				</strong>
+				</ul></div></div>
+	<div class="col-6">
+				<ng-template #About>
+					<app-about></app-about>
+				</ng-template>
+                <div *ngFor ="let d of details">
+                	<h1>{{d.Name}}</h1>
+                </div>
+				<!--Login              -->
+				<div class ="card rounded-left" *ngIf ="login" style ="width:40rem;top:200px">		
+					<div class ="card-header bg-success text-white" style ="text-align:center ;">Authentication</div>
+					<div class = "card-body lead" style ="background:#FDFEFE ;">
+					<div class ="card-content">
+					<form #userForm ="ngForm">
+                            <div class = "alert alert-warning" *ngIf ="warning"><h2>{{result}}</h2></div>
+							<div class ="form-group">
+								<label>Username</label>
+								<input type ="text" class ="form-control" [(ngModel)]="model.username" name ="name"/></div>
+							<div class ="form-group">
+								<label>Password</label>
+								<input type ="password" class ="form-control" name ="password" [(ngModel)] ="model.password"/></div>
+							<div class ="form-group mb-2" >
+							<button type = "button" class =" btn btn-success text-white rounded-pill" (click)="signIn()" style ="margin-top:19px;width:38rem;">LOGIN</button></div>
+							<div class ="form-group">
+								<small ><button class="bg-white small" (click)="addUsers()">Don't have an account? <fa-icon class="text-primary" [icon]="faSignInAlt" ></fa-icon></button></small>
+							</div>
+						</form></div></div></div>
+
+						<!--User Details             -->
+						<div class = "card lead" *ngIf ="userDetails" style ="width:55rem;top:160px;right:150px ;">
+							<div class = "card-header bg-success text-white">USERS DETAILS</div>
+							<div class ="card-body">
+								<button class = "btn btn-success" (click) ="delete()">DELETE</button>
+								<table class="table">
+									<tbody>
+										<tr>
+											<th></th>
+											<th>Name</th>
+											<th>DOB</th>
+											<th>Gender</th>
+											<th>Email</th>
+											<th>Location</th>
+										</tr>
+										<tr *ngFor ="let d of details ">
+											<td><input type ="checkbox" class ="form-check-input" [(ngModel)] ="user_details.name"/></form></td>
+											<td>{{d.Username}}</td>
+											<td>{{d.DOB}}</td>
+											<td>{{d.Gender}}</td>
+											<td>{{d.Email}}</td>
+											<td>{{d.Location}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						<!--Admin Options           -->
+						<div class = "card" *ngIf ="show1" style ="width:30rem;height:15rem;top:200px;">
+							<div class = "card-header bg-success text-white">Options</div>
+							<div class ="card-body">
+								<li class = "list-group-item bg-success text-white"><button class ="bg-success text-white lead" style ="border:none;"(click) ="addUsers()"><pre>Add Members                 <fa-icon class="text-white" [icon]="faPlus"></fa-icon>           </pre></button></li>
+								<li class = "list-group-item bg-success text-white"><button class ="bg-success rounded-pill text-white lead" style ="border:none" (click) ="showDetails()"><pre>View Members                <fa-icon class="text-white" [icon]="faEye"></fa-icon></pre></button></li>
+							</div>
+						</div>
+
+						<!-- Add Users to System -->
+						<div *ngIf ="addPeople" class ="mt-100">
+							<app-addpeople></app-addpeople>
+						</div>
+
+</div></div></div></div>
+
